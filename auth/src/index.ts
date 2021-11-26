@@ -1,5 +1,5 @@
 import express from 'express';
-import { errorHandler } from '../middlewares/error-handler';
+import { errorHandler } from './middlewares/error-handler';
 
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';

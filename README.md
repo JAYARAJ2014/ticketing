@@ -41,3 +41,8 @@ End Points : auth
 | /api/users/signout    | POST   | {}                                 |
 | /apiusers/currentuser | GET    | -                                  |
 
+
+# Middlewares
+
+# Routes
+
