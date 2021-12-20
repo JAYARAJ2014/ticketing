@@ -1,3 +1,8 @@
+# Kubernetes
+
+Install minikube
+and `minikube start`
+
 # Skaffold
 
 Used for kubernetes dev enviroment automation.
@@ -10,29 +15,76 @@ https://skaffold.dev/docs/install/
 
 Try the command skaffold
 
-Resource Types
+# Resource Types
 
-- User `{email, password}`
-- Ticket `{title, price, userId, orderId}`
-- Order `{userId, status, ticketId, expiresAt}`
-- Charge `{orderId, status, amount, stripeId, stripeRefundId }`
+- User
 
-Services
+```
+{
+    email: string
+    password: string
+}
+
+```
+
+- Ticket
+
+```
+{
+    title:string
+    price : number
+    userId: ref(User)
+    orderId: ref(Order)
+}
+
+```
+
+- Order
+
+```
+{
+    userId: ref(User)
+    status: Created | Canceled | AwaitingPayment | Completed
+    ticketId: ref(Ticket)
+    expiresAt: Date
+}
+
+```
+
+- Charge
+
+````
+
+{
+    orderId: ref(Order),
+    status: Created | Failed | Completed
+    amount : number
+    stripeId : string
+    stripeRefundId : string
+}
+
+```
+
+# Services
 
 - auth => User auth. Signup/signin/signout
-- tickets => Ticket creation/editing.
+- tickets => Ticket creation/editing. Knows wehter a ticket can be edited.
 - orders => Order creation/editing
 - expiration => Watches for orders and cancels them after 15 minutes
-- payments => Handle credit card payments.
+- payments => Handle credit card payments. Cancel order if payment fails. Completes if succeeds
 
-Events
+Resources does not need to be one to one matching with services.
+
+# Events
 
 - UserCreated , UserUpdated
 - OrderCreated, OrderCancelled, OrderExpired
 - TicketCreated, TicketUpdated
 - ChargeCreated
 
-End Points : auth
+# Endpoints :
+
+## auth
 
 | End Point             | Method | Body                               |
 | --------------------- | ------ | ---------------------------------- |
@@ -44,5 +96,7 @@ End Points : auth
 
 # Middlewares
 
-# Routes
-
+    - ## Routes
+    - ## Error Handling
+```
+````
